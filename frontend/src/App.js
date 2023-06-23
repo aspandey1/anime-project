@@ -6,9 +6,12 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import NavBar from "./components/navbar";
+import NavBar from "./components/Navbar";
 import "./App.css";
+import "./styles/anime.css";
 import PrivateRoutes from "./features/auth/privateRoutes";
+import AnimeInfo from "./pages/AnimeInfo";
+import Search from "./pages/Search";
 
 function App() {
   return (
@@ -20,7 +23,9 @@ function App() {
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route element={<PrivateRoutes />}>
-            <Route path="/me" element={<Dashboard />}></Route>
+            <Route path="/dashboard" element={<Dashboard />}></Route>
+            <Route path="/anime/:animeID" element={<AnimeInfo />}></Route>
+            <Route path="/search" element={<Search />}></Route>
           </Route>
         </Routes>
       </Router>

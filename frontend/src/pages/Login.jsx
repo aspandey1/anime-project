@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import { reset, login } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
 import { BiLogInCircle } from "react-icons/bi";
@@ -23,7 +23,7 @@ const Login = () => {
 
   useEffect(() => {
     if (isError) toast.error(message);
-    if (isSuccess || user) navigate("/me");
+    if (isSuccess || user) navigate("/dashboard");
     dispatch(reset());
   }, [user, isSuccess, isError, message, dispatch, navigate]);
 

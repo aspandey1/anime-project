@@ -3,7 +3,7 @@ import { useSelector, useDispatch } from "react-redux";
 import { toast } from "react-toastify";
 import { useNavigate } from "react-router-dom";
 import { register, reset } from "../features/auth/authSlice";
-import Spinner from "../components/spinner";
+import Spinner from "../components/Spinner";
 import { MdPerson2 } from "react-icons/md";
 
 const Register = () => {
@@ -26,7 +26,7 @@ const Register = () => {
 
   useEffect(() => {
     if (isError) toast.error(message);
-    if (isSuccess || user) navigate("/me");
+    if (isSuccess || user) navigate("/dashboard");
     dispatch(reset());
   }, [user, isError, isSuccess, message, navigate, dispatch]);
 

@@ -1,44 +1,17 @@
-import React from "react";
-import { useQuery, gql } from "@apollo/client";
+import AnimeCarousel from "../components/AnimeCarousel";
+import { useSelector } from "react-redux";
 
 const Dashboard = () => {
-  const GET_ANIMES = gql`
-    query ($page: Int, $perPage: Int, $search: String) {
-      Page(page: $page, perPage: $perPage) {
-        pageInfo {
-          total
-          perPage
-        }
-        media(search: $search, type: ANIME, sort: FAVOURITES_DESC) {
-          id
-          title {
-            romaji
-            english
-            native
-          }
-          type
-          genres
-        }
-      }
-    }
-  `;
-  const { loading, error, data } = useQuery(GET_ANIMES, {
-    variables: {
-      search: "Naruto",
-      page: 1,
-      perPage: 3,
-    },
-  });
-
-  if (loading) return <p>Loading...</p>;
-  if (error) return <p>Error : {error.message}</p>;
-  console.log(data);
+  const { user } = useSelector((state) => state.auth);
+  const { firstName } = user;
 
   return (
-    <div>
-      <div>{data.Page.media[0].title.english}</div>
-      {/* <div>{data.Media.title.english}</div>
-      <img src={data.Media.coverImage.large} alt="anime" /> */}
+    <div style={{ marginTop: -10, backgroundColor: "#A9A9A9 " }}>
+      <div className="container">
+        <h1 className="py-5 display-1">Welcome back {firstName},</h1>
+        {<AnimeCarousel listName="Popular Anime" sortType="POPULARITY_DESC" />}
+        {<AnimeCarousel listName="Trending Anime" sortType="TRENDING_DESC" />}
+      </div>
     </div>
   );
 };
