@@ -19,10 +19,18 @@ const Landing = () => {
             {user == null ? (
               <div>
                 {" "}
-                <Link to="/register" className="btn btn-secondary btn-lg me-2">
+                <Link
+                  to="/register"
+                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                  className="btn btn-secondary my-3 px-4 me-2"
+                >
                   Sign Up
                 </Link>
-                <Link to="/login" className="btn btn-primary btn-lg">
+                <Link
+                  to="/login"
+                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                  className="btn btn-primary my-3 px-4"
+                >
                   Login
                 </Link>{" "}
               </div>

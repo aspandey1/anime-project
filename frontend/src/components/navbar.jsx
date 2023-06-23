@@ -1,14 +1,16 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
-import { BiSearch } from "react-icons/bi";
+import { TiHome } from "react-icons/ti";
+import { FaSearch } from "react-icons/fa";
 
 const Navbar = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const [width, setWidth] = useState(window.innerWidth);
 
   const { user, isSuccess, isError, isLoading, message } = useSelector(
     (state) => state.auth
@@ -20,6 +22,18 @@ const Navbar = () => {
     dispatch(reset());
   }, [isSuccess, isError, message, user, navigate, dispatch]);
 
+  useEffect(() => {
+    const handleWindowResize = () => {
+      setWidth(window.innerWidth);
+    };
+
+    window.addEventListener("resize", handleWindowResize);
+
+    return () => {
+      window.removeEventListener("resize", handleWindowResize);
+    };
+  }, []);
+
   const handleLogout = () => {
     dispatch(logout());
   };
@@ -30,7 +44,7 @@ const Navbar = () => {
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark py-4">
       <div className="container-xxl">
         <Link className="navbar-brand" to="/">
-          <span className="text-light fw-bold d-flex justify-content-center">
+          <span className="text-light fw-bold d-flex fs-1 justify-content-center">
             Anime Search
           </span>
         </Link>
@@ -46,19 +60,21 @@ const Navbar = () => {
           <span className="navbar-toggler-icon"></span>
         </button>
         <div
-          className="collapse navbar-collapse justify-content-center align-center "
+          className="collapse navbar-collapse justify-content-end align-center "
           id="main-nav"
         >
-          <ul className="navbar-nav mr-auto">
-            <li class="nav-item active">
-              <a class="nav-link" href="#dfgs">
-                Home <span class="sr-only"></span>
-              </a>
-            </li>
-            <li className="nav-item ms-2 d-md-inline navbar-links-md">
-              {user == null ? (
-                <Link className="btn btn-secondary w-100 my-2" to="/register">
-                  Sign Up
+          <ul className="navbar-nav">
+            <li
+              style={{ alignSelf: "center" }}
+              className="nav-item  d-md-inline navbar-links-md"
+            >
+              {user != null ? (
+                <Link to="/dashboard" className="link">
+                  {width > 991 ? (
+                    <TiHome size={46} color="white" />
+                  ) : (
+                    <p className="link-text">Home</p>
+                  )}
                 </Link>
               ) : (
                 <></>
@@ -66,20 +82,46 @@ const Navbar = () => {
             </li>
             <li
               style={{ alignSelf: "center" }}
-              className="nav-item ms-2 d-md-inline navbar-links-md"
+              className="nav-item  d-md-inline navbar-links-md"
             >
-              <Link to="/search">
-                <BiSearch size={38} color="white" />
-              </Link>
+              {user != null ? (
+                <Link to="/search" className="link">
+                  {width > 991 ? (
+                    <FaSearch size={38} color="white" />
+                  ) : (
+                    <p className="link-text">Search</p>
+                  )}
+                </Link>
+              ) : (
+                <></>
+              )}
             </li>
-            <li className="nav-item ms-2 d-md-inline navbar-links-md ps-4">
+            <li className="nav-item mx-2">
               {user == null ? (
-                <Link className="btn btn-primary w-100 my-2" to="/login">
+                <Link
+                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                  className="btn btn-secondary w-100 my-3 px-4"
+                  to="/register"
+                >
+                  Sign Up
+                </Link>
+              ) : (
+                <></>
+              )}
+            </li>
+            <li className="nav-item mx-2">
+              {user == null ? (
+                <Link
+                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                  className="btn btn-primary w-100 my-3 px-4"
+                  to="/login"
+                >
                   Login
                 </Link>
               ) : (
                 <div
-                  className="btn btn-danger w-100 my-2 "
+                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                  className="btn btn-danger w-100 my-3 "
                   onClick={handleLogout}
                 >
                   Logout

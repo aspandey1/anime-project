@@ -151,6 +151,13 @@ body {
 
 .link {
   text-decoration: none;
+  margin-right: 40px;
+}
+
+.link-text {
+  font-weight: bold;
+  font-size: 25px;
+  color: white;
 }
 
 @media (max-width: 768px) {
