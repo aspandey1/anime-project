@@ -6,6 +6,7 @@ import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { TiHome } from "react-icons/ti";
 import { FaSearch } from "react-icons/fa";
+import { IoLibrary } from "react-icons/io5";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -90,6 +91,22 @@ const Navbar = () => {
                     <FaSearch size={38} color="white" />
                   ) : (
                     <p className="link-text">Search</p>
+                  )}
+                </Link>
+              ) : (
+                <></>
+              )}
+            </li>
+            <li
+              style={{ alignSelf: "center" }}
+              className="nav-item  d-md-inline navbar-links-md"
+            >
+              {user != null ? (
+                <Link to="/library" className="link">
+                  {width > 991 ? (
+                    <IoLibrary size={38} color="white" />
+                  ) : (
+                    <p className="link-text">Library</p>
                   )}
                 </Link>
               ) : (

@@ -2,6 +2,33 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
+import { IconName } from "react-icons/md";
+
+var percentColors = [
+  { pct: 0.0, color: { r: 0xff, g: 0x00, b: 0 } },
+  { pct: 0.5, color: { r: 0xff, g: 0xff, b: 0 } },
+  { pct: 1.0, color: { r: 0x00, g: 0xff, b: 0 } },
+];
+
+var getColorForPercentage = function (pct) {
+  for (var i = 1; i < percentColors.length - 1; i++) {
+    if (pct < percentColors[i].pct) {
+      break;
+    }
+  }
+  var lower = percentColors[i - 1];
+  var upper = percentColors[i];
+  var range = upper.pct - lower.pct;
+  var rangePct = (pct - lower.pct) / range;
+  var pctLower = 1 - rangePct;
+  var pctUpper = rangePct;
+  var color = {
+    r: Math.floor(lower.color.r * pctLower + upper.color.r * pctUpper),
+    g: Math.floor(lower.color.g * pctLower + upper.color.g * pctUpper),
+    b: Math.floor(lower.color.b * pctLower + upper.color.b * pctUpper),
+  };
+  return "rgb(" + [color.r, color.g, color.b].join(",") + ")";
+};
 
 const AnimeInfo = () => {
   const { animeID } = useParams();
@@ -33,6 +60,7 @@ const AnimeInfo = () => {
             id
           }
         }
+        averageScore
       }
     }
   `;
@@ -41,6 +69,9 @@ const AnimeInfo = () => {
   });
   if (loading) return <Spinner />;
   if (error) return <p>{error.message}</p>;
+
+  let gen = "";
+  data.Media.genres.map((item) => (gen += item + " "));
 
   return (
     <div style={{ backgroundColor: "#A9A9A9" }}>
@@ -72,15 +103,52 @@ const AnimeInfo = () => {
             </div>
             <div className="anime-stats">
               <p className="stat-title">Genre: </p>
-              {data.Media.genres.map((item, index) => (
-                <p key={index} className="stat">
-                  {item}
-                </p>
-              ))}
+              <p className="stat">{gen}</p>
             </div>
           </div>
           <div className="right-container">
-            <p className="desc-title">Description</p>
+            <p className="desc-title">Rating</p>
+            <div className="rating-container">
+              <div className="score-container">
+                {data.Media.averageScore ? (
+                  <p
+                    className="score"
+                    style={{
+                      backgroundColor: `${getColorForPercentage(
+                        data.Media.averageScore / 100
+                      )}`,
+                    }}
+                  >
+                    {data.Media.averageScore / 10}
+                  </p>
+                ) : (
+                  <p
+                    className="score"
+                    style={{
+                      backgroundColor: "grey",
+                    }}
+                  >
+                    N/A
+                  </p>
+                )}
+                <div className="avg-score">
+                  <p
+                    style={{
+                      fontWeight: "bold",
+                      marginBottom: -2,
+                      fontSize: 30,
+                    }}
+                  >
+                    Average Score
+                  </p>
+                  <p style={{ fontSize: 14 }}>*Based on the AniList APIv2</p>
+                </div>
+              </div>
+              <div className="add-container">
+                <p className="add bg-dark">Add to List</p>
+              </div>
+            </div>
+            <p className="desc-title mt-2">Description</p>
             <p
               className="desc"
               dangerouslySetInnerHTML={{ __html: data.Media.description }}

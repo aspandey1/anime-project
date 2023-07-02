@@ -12,6 +12,7 @@ import "./styles/anime.css";
 import PrivateRoutes from "./features/auth/privateRoutes";
 import AnimeInfo from "./pages/AnimeInfo";
 import Search from "./pages/Search";
+import Library from "./pages/Library";
 
 function App() {
   return (
@@ -26,6 +27,7 @@ function App() {
             <Route path="/dashboard" element={<Dashboard />}></Route>
             <Route path="/anime/:animeID" element={<AnimeInfo />}></Route>
             <Route path="/search" element={<Search />}></Route>
+            <Route path="/library" element={<Library />}></Route>
           </Route>
         </Routes>
       </Router>

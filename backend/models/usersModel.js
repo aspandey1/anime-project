@@ -19,6 +19,9 @@ const userSchema = mongoose.Schema(
       type: String,
       requried: [true, "Please add a password"],
     },
+    animeList: {
+      type: [{ type: Map, of: Number }],
+    },
   },
   {
     timestamps: true,

@@ -39,7 +39,8 @@ const Register = () => {
 
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!email || !firstName || !lastName || password || confirmPassword)
+    console.log(email, firstName, lastName, password, confirmPassword);
+    if (!email || !firstName || !lastName || !password || !confirmPassword)
       return toast.error("Please fill out all fields");
     if (password !== confirmPassword)
       return toast.error("Passwords do not match");
