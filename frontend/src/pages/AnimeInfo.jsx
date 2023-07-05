@@ -3,6 +3,7 @@ import { useQuery, gql } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import { IconName } from "react-icons/md";
+import "../styles/anime.css";
 
 var percentColors = [
   { pct: 0.0, color: { r: 0xff, g: 0x00, b: 0 } },

@@ -8,7 +8,6 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import NavBar from "./components/Navbar";
 import "./App.css";
-import "./styles/anime.css";
 import PrivateRoutes from "./features/auth/privateRoutes";
 import AnimeInfo from "./pages/AnimeInfo";
 import Search from "./pages/Search";
