@@ -156,10 +156,6 @@ const AnimeInfo = () => {
             ></p>
           </div>
         </div>
-        <p className="desc-title my-4">Comments</p>
-        <div>
-          <p>0 Comments</p>
-        </div>
       </div>
     </div>
   );

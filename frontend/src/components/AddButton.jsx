@@ -28,7 +28,7 @@ const AddButton = () => {
 
   for (let i = 0; i < animeList.length; i++) {
     if (animeList[i] == animeID) {
-      return <p className="add bg-dark">Remove Anime</p>;
+      return <p className="add bg-danger">Remove Anime</p>;
     }
   }
 

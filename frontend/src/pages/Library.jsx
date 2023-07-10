@@ -36,7 +36,7 @@ const Library = () => {
 
   return (
     <div className="container">
-      <h1 className="display-4 library-title">Library</h1>
+      <h1 className="display-4 library-title">LIBRARY</h1>
       {data.Page.media.length > 0 ? (
         <div className="library-container">
           {data.Page.media.map((element, index) => {

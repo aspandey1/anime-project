@@ -205,10 +205,18 @@ body {
   font-weight: bold;
   cursor: pointer;
 }
+
+.add:hover {
+  filter: brightness(0.85);
+}
 .avg-score {
   margin-left: 15px;
   width: 300px;
   align-self: center;
+}
+.name-overflow {
+  text-overflow: ellipsis;
+  overflow: hidden;
 }
 
 @media (max-width: 768px) {

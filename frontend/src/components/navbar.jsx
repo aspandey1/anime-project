@@ -7,6 +7,7 @@ import Spinner from "./Spinner";
 import { TiHome } from "react-icons/ti";
 import { FaSearch } from "react-icons/fa";
 import { IoLibrary } from "react-icons/io5";
+import { RxAvatar } from "react-icons/rx";
 
 const Navbar = () => {
   const dispatch = useDispatch();
@@ -64,17 +65,17 @@ const Navbar = () => {
           className="collapse navbar-collapse justify-content-end align-center "
           id="main-nav"
         >
-          <ul className="navbar-nav">
+          <ul className="nav-mobile-pt navbar-nav">
             <li
               style={{ alignSelf: "center" }}
               className="nav-item  d-md-inline navbar-links-md"
             >
               {user != null ? (
-                <Link to="/dashboard" className="link">
+                <Link to="/dashboard" className="link ">
                   {width > 991 ? (
                     <TiHome size={46} color="white" />
                   ) : (
-                    <p className="link-text">Home</p>
+                    <p className="link-text nav-link">Home</p>
                   )}
                 </Link>
               ) : (
@@ -88,7 +89,7 @@ const Navbar = () => {
               {user != null ? (
                 <Link to="/search" className="link">
                   {width > 991 ? (
-                    <FaSearch size={38} color="white" />
+                    <FaSearch size={36} color="white" />
                   ) : (
                     <p className="link-text">Search</p>
                   )}
@@ -113,38 +114,77 @@ const Navbar = () => {
                 <></>
               )}
             </li>
-            <li className="nav-item mx-2">
+            <>
               {user == null ? (
-                <Link
-                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
-                  className="btn btn-secondary w-100 my-3 px-4"
-                  to="/register"
-                >
-                  Sign Up
-                </Link>
+                <>
+                  <li className="nav-item mx-2">
+                    <Link
+                      style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                      className="btn btn-secondary w-100 my-3 px-4"
+                      to="/register"
+                    >
+                      Sign Up
+                    </Link>
+                  </li>
+                  <li className="nav-item mx-2">
+                    <Link
+                      style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                      className="btn btn-primary w-100 my-3 px-4"
+                      to="/login"
+                    >
+                      Login
+                    </Link>
+                  </li>
+                </>
               ) : (
                 <></>
               )}
-            </li>
-            <li className="nav-item mx-2">
-              {user == null ? (
-                <Link
-                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
-                  className="btn btn-primary w-100 my-3 px-4"
-                  to="/login"
-                >
-                  Login
-                </Link>
-              ) : (
-                <div
-                  style={{ height: 55, fontSize: 25, fontWeight: 600 }}
-                  className="btn btn-danger w-100 my-3 "
-                  onClick={handleLogout}
-                >
-                  Logout
-                </div>
-              )}
-            </li>
+            </>
+            <>{user == null ? <></> : <li className="nav-item"></li>}</>
+
+            {user && width > 991 ? (
+              <li className="nav-item dropdown">
+                <RxAvatar
+                  className="dropdown-toggle"
+                  type="button"
+                  data-bs-toggle="dropdown"
+                  aria-haspopup="true"
+                  aria-expanded="false"
+                  data-bs-display="static"
+                  color="white"
+                  size={45}
+                ></RxAvatar>
+                <ul className="dropdown-menu dropdown-menu-end">
+                  <li>
+                    <div
+                      className=""
+                      style={{ textAlign: "center", paddingInline: 16 }}
+                    >
+                      {user.firstName} {user.lastName}
+                    </div>
+                  </li>
+                  <li>
+                    <hr className="dropdown-divider"></hr>
+                  </li>
+                  <li>
+                    <button
+                      className="dropdown-item bg-danger"
+                      type="button"
+                      onClick={handleLogout}
+                      style={{
+                        textAlign: "center",
+                        color: "white",
+                        fontWeight: "bold",
+                      }}
+                    >
+                      Logout
+                    </button>
+                  </li>
+                </ul>
+              </li>
+            ) : (
+              <></>
+            )}
           </ul>
         </div>
       </div>

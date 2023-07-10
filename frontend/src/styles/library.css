@@ -30,7 +30,7 @@
   color: aliceblue;
   text-align: center;
   font-weight: bold;
-  text-overflow: ellipsis " [..]";
+  text-overflow: ellipsis;
   font-size: 2rem;
   margin-top: 10px;
   height: 6rem;
@@ -39,6 +39,10 @@
 
 .library-link {
   text-decoration: none;
+}
+
+.library-link:hover {
+  filter: brightness(0.85);
 }
 
 @media (max-width: 787px) {
