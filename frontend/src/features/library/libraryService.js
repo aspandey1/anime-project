@@ -19,8 +19,17 @@ const get = async (values) => {
 };
 
 const add = async (values) => {
+  console.log(values);
   const response = await axios.post(API_URL + "addAnime", values);
-  return response.data;
+  if (response.data) {
+    var arr = [];
+    response.data.library.forEach((element) => {
+      arr.push(element.animeId);
+    });
+    localStorage.setItem("library", JSON.stringify(arr));
+    localStorage.setItem("rating", JSON.stringify(response.data.library));
+  }
+  return arr;
 };
 
 const libraryService = {

@@ -8,30 +8,14 @@ import { Link, useNavigate } from "react-router-dom";
 import "../styles/library.css";
 
 const Library = () => {
-  const navigate = useNavigate();
   const dispatch = useDispatch();
-  const { user } = useSelector((state) => state.auth);
-  const { email } = user;
-  const { animeList, isSucess, isLoading, isError, message } = useSelector(
-    (state) => state.library
-  );
+  const { animeList } = useSelector((state) => state.library);
   const [lib, setLib] = useState(animeList);
-
-  useEffect(() => {
-    if (isSucess) {
-      dispatch(reset());
-    }
-    if (isError) toast.error(message);
-    dispatch(getLibrary({ email: email }));
-    return () => {
-      dispatch(reset());
-    };
-  }, [dispatch, navigate, email, isError, isSucess, message]);
 
   const GET_LIBRARY = gql`
     query ($list: [Int]) {
-      Page(page: 1, perPage: 10) {
-        media(id_in: $list, type: ANIME) {
+      Page(page: 1, perPage: 100) {
+        media(id_in: $list, type: ANIME, sort: TITLE_ROMAJI) {
           id
           title {
             userPreferred
@@ -48,11 +32,7 @@ const Library = () => {
     variables: { list: lib },
   });
   if (error) return <p>{error.message}</p>;
-  if (isLoading || loading) return <Spinner />;
-
-  const handleClick = (id) => {
-    navigate(`/anime/${id}`);
-  };
+  if (loading) return <Spinner />;
 
   return (
     <div className="container">
@@ -61,26 +41,22 @@ const Library = () => {
         <div className="library-container">
           {data.Page.media.map((element, index) => {
             return (
-              // <Link
-              //   key={index}
-              //   to={`/anime/${element.id}`}
-              //   className="library-link"
-              // >
-              <div
+              <Link
                 key={index}
-                className="library-img-p bg-dark"
-                onClick={() => handleClick(element.id)}
+                to={`/anime/${element.id}`}
+                className="library-link"
               >
-                <img
-                  className="library-img"
-                  src={element.coverImage.large}
-                  alt=""
-                />
-                <div className="library-p">
-                  <p>{element.title.userPreferred}</p>
+                <div key={index} className="library-img-p bg-dark">
+                  <img
+                    className="library-img"
+                    src={element.coverImage.large}
+                    alt=""
+                  />
+                  <div className="library-p">
+                    <p>{element.title.userPreferred}</p>
+                  </div>
                 </div>
-              </div>
-              // </Link>
+              </Link>
             );
           })}
         </div>

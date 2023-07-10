@@ -2,8 +2,9 @@ import React from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
-import { IconName } from "react-icons/md";
 import "../styles/anime.css";
+import { useDispatch, useSelector } from "react-redux";
+import AddButton from "../components/AddButton";
 
 var percentColors = [
   { pct: 0.0, color: { r: 0xff, g: 0x00, b: 0 } },
@@ -33,12 +34,11 @@ var getColorForPercentage = function (pct) {
 
 const AnimeInfo = () => {
   const { animeID } = useParams();
-
   const GET_ANIMES = gql`
     query ($id: Int) {
       Media(id: $id) {
         title {
-          english
+          userPreferred
         }
         season
         seasonYear
@@ -77,7 +77,7 @@ const AnimeInfo = () => {
   return (
     <div style={{ backgroundColor: "#A9A9A9" }}>
       <div className="container">
-        <h1 className="display-1 title">{data.Media.title.english}</h1>
+        <h1 className="display-1 title">{data.Media.title.userPreferred}</h1>
         <div className="info-container">
           <div className="left-container">
             <div>
@@ -146,7 +146,7 @@ const AnimeInfo = () => {
                 </div>
               </div>
               <div className="add-container">
-                <p className="add bg-dark">Add to List</p>
+                <AddButton></AddButton>
               </div>
             </div>
             <p className="desc-title mt-2">Description</p>

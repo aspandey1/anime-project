@@ -35,12 +35,12 @@ const addAnime = asyncHandler(async (req, res) => {
       }
     });
     if (inList) {
-      res.status(400).json({ message: "already in list" });
+      res.status(400).json({ message: "Already in library" });
       return;
     }
     user.animeList.push({ animeId: animeID, rating: -1 });
     user.save();
-    res.status(200).json({ message: user.animeList });
+    res.status(200).json({ library: user.animeList });
     return;
   }
 

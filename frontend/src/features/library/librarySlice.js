@@ -46,6 +46,10 @@ export const addAnime = createAsyncThunk(
   }
 );
 
+export const clear = createAsyncThunk("library/clear", async () => {
+  await libraryService.clear();
+});
+
 export const librarySlice = createSlice({
   name: "library",
   initialState,
@@ -72,6 +76,24 @@ export const librarySlice = createSlice({
         state.isError = true;
         state.message = action.payload;
         state.animeList = null;
+      })
+      .addCase(addAnime.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(addAnime.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.isSuccess = true;
+        state.animeList = action.payload;
+      })
+      .addCase(addAnime.rejected, (state, action) => {
+        state.isLoading = false;
+        state.isError = true;
+        state.message = action.payload;
+        state.animeList = null;
+      })
+      .addCase(clear.fulfilled, (state) => {
+        state.animeList = null;
+        state.isSuccess = true;
       });
   },
 });
