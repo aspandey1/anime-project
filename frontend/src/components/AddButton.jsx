@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import "../styles/anime.css";
@@ -13,7 +13,6 @@ const AddButton = () => {
   const { email } = user;
   const {
     animeList,
-    total,
     isLoading,
     deleteIsError,
     addIsError,

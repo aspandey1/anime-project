@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { logout, reset } from "../features/auth/authSlice";
+import { clear, reset as resetLib } from "../features/library/librarySlice";
 import { toast } from "react-toastify";
 import Spinner from "./Spinner";
 import { TiHome } from "react-icons/ti";
@@ -21,7 +22,9 @@ const Navbar = () => {
   useEffect(() => {
     if (isError) return toast.error("Error in logging out");
     if (isSuccess) navigate("/");
+
     dispatch(reset());
+    dispatch(resetLib());
   }, [isSuccess, isError, message, user, navigate, dispatch]);
 
   useEffect(() => {
@@ -37,6 +40,7 @@ const Navbar = () => {
   }, []);
 
   const handleLogout = () => {
+    dispatch(clear());
     dispatch(logout());
   };
 
@@ -66,8 +70,13 @@ const Navbar = () => {
           id="main-nav"
         >
           <ul className="nav-mobile-pt navbar-nav">
+            {user ? (
+              <hr className="solid" style={{ marginTop: -5 }}></hr>
+            ) : (
+              <></>
+            )}
             <li
-              style={{ alignSelf: "center" }}
+              style={{ alignSelf: "center", width: "100%" }}
               className="nav-item  d-md-inline navbar-links-md"
             >
               {user != null ? (
@@ -75,15 +84,30 @@ const Navbar = () => {
                   {width > 991 ? (
                     <TiHome size={46} color="white" />
                   ) : (
-                    <p className="link-text nav-link">Home</p>
+                    <div
+                      style={{
+                        fontSize: 25,
+                        fontWeight: 600,
+                        textAlign: "center",
+                        color: "white",
+                      }}
+                      className="w-100 bottom-border home-border"
+                    >
+                      Home
+                    </div>
                   )}
                 </Link>
               ) : (
                 <></>
               )}
             </li>
+            {user ? (
+              <hr className="solid" style={{ marginTop: -5 }}></hr>
+            ) : (
+              <></>
+            )}
             <li
-              style={{ alignSelf: "center" }}
+              style={{ alignSelf: "center", width: "100%" }}
               className="nav-item  d-md-inline navbar-links-md"
             >
               {user != null ? (
@@ -91,15 +115,30 @@ const Navbar = () => {
                   {width > 991 ? (
                     <FaSearch size={36} color="white" />
                   ) : (
-                    <p className="link-text">Search</p>
+                    <div
+                      style={{
+                        fontSize: 25,
+                        fontWeight: 600,
+                        textAlign: "center",
+                        color: "white",
+                      }}
+                      className="w-100 bottom-border home-border"
+                    >
+                      Search
+                    </div>
                   )}
                 </Link>
               ) : (
                 <></>
               )}
             </li>
+            {user ? (
+              <hr className="solid" style={{ marginTop: -5 }}></hr>
+            ) : (
+              <></>
+            )}
             <li
-              style={{ alignSelf: "center" }}
+              style={{ alignSelf: "center", width: "100%" }}
               className="nav-item  d-md-inline navbar-links-md"
             >
               {user != null ? (
@@ -107,7 +146,17 @@ const Navbar = () => {
                   {width > 991 ? (
                     <IoLibrary size={38} color="white" />
                   ) : (
-                    <p className="link-text">Library</p>
+                    <div
+                      style={{
+                        fontSize: 25,
+                        fontWeight: 600,
+                        textAlign: "center",
+                        color: "white",
+                      }}
+                      className="w-100 mb-3 bottom-border"
+                    >
+                      Library
+                    </div>
                   )}
                 </Link>
               ) : (
@@ -119,7 +168,13 @@ const Navbar = () => {
                 <>
                   <li className="nav-item mx-2">
                     <Link
-                      style={{ height: 55, fontSize: 25, fontWeight: 600 }}
+                      style={{
+                        height: 55,
+                        fontSize: 25,
+                        fontWeight: 600,
+
+                        whiteSpace: "nowrap",
+                      }}
                       className="btn btn-secondary w-100 my-3 px-4"
                       to="/register"
                     >
@@ -140,8 +195,11 @@ const Navbar = () => {
                 <></>
               )}
             </>
-            <>{user == null ? <></> : <li className="nav-item"></li>}</>
-
+            {user ? (
+              <hr className="solid" style={{ marginTop: -20 }}></hr>
+            ) : (
+              <></>
+            )}
             {user && width > 991 ? (
               <li className="nav-item dropdown">
                 <RxAvatar
@@ -183,7 +241,23 @@ const Navbar = () => {
                 </ul>
               </li>
             ) : (
-              <></>
+              <div className="">
+                {user ? (
+                  <div
+                    style={{
+                      height: 55,
+                      fontSize: 25,
+                      fontWeight: 600,
+                    }}
+                    className="btn btn-danger w-100 mb-3 "
+                    onClick={handleLogout}
+                  >
+                    Logout
+                  </div>
+                ) : (
+                  <></>
+                )}
+              </div>
             )}
           </ul>
         </div>

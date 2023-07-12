@@ -76,6 +76,7 @@ export const librarySlice = createSlice({
   initialState,
   reducers: {
     reset: (state) => {
+      state.total = 0;
       state.isLoading = false;
       state.isSuccess = false;
       state.isError = false;
@@ -134,6 +135,7 @@ export const librarySlice = createSlice({
       .addCase(clear.fulfilled, (state) => {
         state.animeList = null;
         state.isSuccess = true;
+        state.total = 0;
       });
   },
 });

@@ -44,10 +44,16 @@ const removeAnime = async (values) => {
   return arr;
 };
 
+const clear = async () => {
+  localStorage.removeItem("library");
+  localStorage.removeItem("rating");
+};
+
 const libraryService = {
   add,
   get,
   removeAnime,
+  clear,
 };
 
 export default libraryService;
