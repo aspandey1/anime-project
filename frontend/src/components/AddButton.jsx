@@ -1,9 +1,9 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
 import "../styles/anime.css";
 import { useDispatch, useSelector } from "react-redux";
-import { addAnime, reset } from "../features/library/librarySlice";
+import { deleteAnime, addAnime, reset } from "../features/library/librarySlice";
 import { toast } from "react-toastify";
 
 const AddButton = () => {
@@ -11,31 +11,58 @@ const AddButton = () => {
   const { animeID } = useParams();
   const { user } = useSelector((state) => state.auth);
   const { email } = user;
-  const { animeList, isLoading, isError, isSuccess, message } = useSelector(
-    (state) => state.library
-  );
+  const {
+    animeList,
+    total,
+    isLoading,
+    deleteIsError,
+    addIsError,
+    deleteIsSuccess,
+    addIsSuccess,
+    message,
+  } = useSelector((state) => state.library);
+
+  const remove = () => {
+    dispatch(deleteAnime({ email, animeID }));
+  };
+
+  const add = () => {
+    dispatch(addAnime({ email, animeID }));
+  };
+
   useEffect(() => {
-    if (isError) toast.error(message);
+    if (addIsError) toast.error(message);
+    if (deleteIsError) toast.error(message);
+    if (addIsSuccess) toast.success("Added to Library");
+    if (deleteIsSuccess) toast.success("Removed from Library");
 
     return () => {
       dispatch(reset());
     };
-  }, [isError, isSuccess, message]);
+  }, [
+    dispatch,
+    addIsError,
+    deleteIsError,
+    addIsSuccess,
+    deleteIsSuccess,
+    message,
+  ]);
 
   if (isLoading) {
     return <Spinner />;
   }
+  const intAnimeId = parseInt(animeID);
 
   for (let i = 0; i < animeList.length; i++) {
-    if (animeList[i] == animeID) {
-      return <p className="add bg-danger">Remove Anime</p>;
+    if (animeList[i] === intAnimeId) {
+      return (
+        <p className="add bg-danger" onClick={remove}>
+          Remove Anime
+        </p>
+      );
     }
   }
 
-  const add = () => {
-    dispatch(addAnime({ email, animeID }));
-    toast.success("Added to Library");
-  };
   return (
     <>
       {isLoading ? (

@@ -19,8 +19,20 @@ const get = async (values) => {
 };
 
 const add = async (values) => {
-  console.log(values);
   const response = await axios.post(API_URL + "addAnime", values);
+  if (response.data) {
+    var arr = [];
+    response.data.library.forEach((element) => {
+      arr.push(element.animeId);
+    });
+    localStorage.setItem("library", JSON.stringify(arr));
+    localStorage.setItem("rating", JSON.stringify(response.data.library));
+  }
+  return arr;
+};
+
+const removeAnime = async (values) => {
+  const response = await axios.post(API_URL + "deleteAnime", values);
   if (response.data) {
     var arr = [];
     response.data.library.forEach((element) => {
@@ -35,6 +47,7 @@ const add = async (values) => {
 const libraryService = {
   add,
   get,
+  removeAnime,
 };
 
 export default libraryService;
