@@ -1,16 +1,13 @@
-import React, { useEffect, useState } from "react";
 import { gql, useQuery } from "@apollo/client";
-import { toast } from "react-toastify";
-import { getLibrary, reset } from "../features/library/librarySlice";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import Spinner from "../components/Spinner";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { GrDocumentMissing } from "react-icons/gr";
 import "../styles/library.css";
 
 const Library = () => {
-  const dispatch = useDispatch();
   const { animeList } = useSelector((state) => state.library);
-  const [lib, setLib] = useState(animeList);
+  const lib = animeList;
 
   const GET_LIBRARY = gql`
     query ($list: [Int]) {
@@ -61,8 +58,23 @@ const Library = () => {
           })}
         </div>
       ) : (
-        <div className="">
-          <p>Nothing</p>
+        <div className="library-nothing">
+          <GrDocumentMissing
+            className="center-svg"
+            size={90}
+          ></GrDocumentMissing>
+          <p
+            style={{
+              fontWeight: "bold",
+              fontSize: 30,
+              letterSpacing: 2,
+              textAlign: "center",
+              marginTop: 28,
+            }}
+            className="center"
+          >
+            Nothing in Library
+          </p>
         </div>
       )}
     </div>

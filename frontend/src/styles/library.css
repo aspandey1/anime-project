@@ -45,6 +45,22 @@
   filter: brightness(0.85);
 }
 
+.library-nothing {
+  display: flex;
+  flex-direction: column;
+  margin-top: 8rem;
+  margin-bottom: 1.3rem;
+}
+
+.center {
+  display: flex;
+  justify-content: center;
+}
+
+.center-svg {
+  align-self: center;
+}
+
 @media (max-width: 787px) {
   .library-img-p {
     width: 140px;

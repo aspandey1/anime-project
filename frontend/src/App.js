@@ -12,6 +12,7 @@ import PrivateRoutes from "./features/auth/privateRoutes";
 import AnimeInfo from "./pages/AnimeInfo";
 import Search from "./pages/Search";
 import Library from "./pages/Library";
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -29,7 +30,9 @@ function App() {
             <Route path="/library" element={<Library />}></Route>
           </Route>
         </Routes>
+        <Footer />
       </Router>
+
       <ToastContainer />
     </>
   );

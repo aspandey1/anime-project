@@ -27,13 +27,26 @@ const Results = ({ searchInput }) => {
     variables: { search: searchInput },
   });
 
-  if (loading) return <p className="display-1">Loading...</p>;
+  if (loading)
+    return (
+      <p
+        style={{ flex: 1, textAlign: "center", marginTop: 180 }}
+        className="display-1"
+      >
+        Loading...
+      </p>
+    );
   if (error) return <p>{error.message}</p>;
 
   return (
     <div className="mt-4">
       {data.Page.media.length === 0 ? (
-        <p className="display-1">No Results</p>
+        <p
+          className="display-1"
+          style={{ flex: 1, textAlign: "center", marginTop: 180 }}
+        >
+          No Results
+        </p>
       ) : (
         <div className="container">
           <p>{data.Page.media.length} Results found</p>

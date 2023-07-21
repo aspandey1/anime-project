@@ -111,26 +111,42 @@
 .popular {
   margin-top: 10px;
 }
-/* .home-border {
-  border-top-color: grey;
-  border-top-width: 5px;
-  border-top-style: solid;
-  width: 100%;
-  padding-top: 15px;
-} */
-/* .bottom-border {
-  border-color: grey;
-  border-width: 2px;
-  border-style: solid;
-  width: 100%;
-  padding-block: 10px;
-} */
+
 .solid {
   border-top: 3px solid #bbb;
 }
 .dropdown-center {
   display: flex;
   align-items: center;
+}
+
+.footer {
+  height: 10rem;
+  position: relative;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+}
+
+.footer-text {
+  letter-spacing: 2px;
+  color: white;
+}
+
+.footer-container {
+  padding-top: 3rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.footer-icons {
+  float: right;
+}
+
+.icon-padding {
+  margin-left: 3rem;
 }
 
 @media (max-width: 768px) {
