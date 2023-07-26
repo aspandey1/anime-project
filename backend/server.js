@@ -2,7 +2,7 @@ const path = require("path");
 const express = require("express");
 const dotenv = require("dotenv").config();
 const colors = require("colors");
-const PORT = process.env.PORT || 3000;
+const PORT = process.env.PORT;
 const connectDB = require("../backend/config/db");
 
 connectDB();
