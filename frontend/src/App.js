@@ -6,7 +6,7 @@ import Landing from "./pages/Landing";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
-import NavBar from "./components/Navbar";
+import Navbar from "./components/Navbar";
 import "./App.css";
 import PrivateRoutes from "./features/auth/privateRoutes";
 import AnimeInfo from "./pages/AnimeInfo";
@@ -18,7 +18,7 @@ function App() {
   return (
     <>
       <Router>
-        <NavBar />
+        <Navbar />
         <Routes>
           // Redirects to Landing Page if invalid url
           <Route path="*" element={<Landing />}></Route>
