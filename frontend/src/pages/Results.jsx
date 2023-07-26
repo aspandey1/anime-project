@@ -43,7 +43,12 @@ const Results = ({ searchInput }) => {
       {data.Page.media.length === 0 ? (
         <p
           className="display-1"
-          style={{ flex: 1, textAlign: "center", marginTop: 180 }}
+          style={{
+            flex: 1,
+            textAlign: "center",
+            marginTop: 180,
+            marginBottom: 180,
+          }}
         >
           No Results
         </p>

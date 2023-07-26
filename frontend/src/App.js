@@ -20,7 +20,8 @@ function App() {
       <Router>
         <NavBar />
         <Routes>
-          <Route path="/" element={<Landing />}></Route>
+          // Redirects to Landing Page if invalid url
+          <Route path="*" element={<Landing />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
           <Route element={<PrivateRoutes />}>

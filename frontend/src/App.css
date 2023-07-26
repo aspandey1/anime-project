@@ -123,9 +123,7 @@
 .footer {
   height: 10rem;
   position: relative;
-  right: 0;
   bottom: 0;
-  left: 0;
   width: 100%;
 }
 
@@ -149,6 +147,15 @@
   margin-left: 3rem;
 }
 
+.source {
+  padding-top: 1rem;
+  font-size: 10px;
+}
+
+.input-bg {
+  background-color: whitesmoke;
+}
+
 @media (max-width: 768px) {
   .navbar-links-md {
     align-self: center;
@@ -156,5 +163,38 @@
   .nav-mobile-pt {
     padding-top: 3rem;
     justify-content: center;
+  }
+}
+
+@media (max-width: 768px) {
+  .footer {
+    height: 15rem;
+  }
+  .footer-container {
+    flex-direction: column;
+  }
+  .footer-icons {
+    justify-content: center;
+  }
+  .footer-space {
+    padding-bottom: 1rem;
+  }
+  .footer-text {
+    text-align: center;
+  }
+  .icon-padding {
+    margin-top: 1rem;
+    margin-inline: 2rem;
+  }
+}
+
+@media screen and (min-height: 792px) {
+  .rel-cont {
+    margin-top: 10rem;
+    margin-bottom: 20rem;
+  }
+  .cont-log {
+    margin-top: 8rem;
+    margin-bottom: 10rem;
   }
 }

@@ -6,7 +6,7 @@ const Footer = () => {
   return (
     <footer className="footer bg-dark">
       <div className="container footer-container">
-        <div>
+        <div className="footer-space">
           <div className="footer-text">Developed by Ashish Pandey</div>
           <p></p>
           <div className="footer-text">
@@ -21,8 +21,20 @@ const Footer = () => {
           </div>
         </div>
         <div className="footer-icons">
-          <BsLinkedin className="icon-padding" size={60} color="white" />
-          <BsGithub className="icon-padding" size={60} color="white" />
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://www.linkedin.com/in/ashishpandey-"
+          >
+            <BsLinkedin className="icon-padding" size={60} color="white" />
+          </a>
+          <a
+            target="_blank"
+            rel="noreferrer"
+            href="https://github.com/aspandey1/anime-project"
+          >
+            <BsGithub className="icon-padding" size={60} color="white" />
+          </a>
         </div>
       </div>
     </footer>

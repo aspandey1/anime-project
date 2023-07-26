@@ -85,7 +85,7 @@ const Register = () => {
             </label>
             <input
               type="email"
-              className="form-control border border-dark border-3"
+              className="form-control border border-dark border-3 input-bg"
               placeholder="e.g. name@example.com"
               id="email"
               name="email"
@@ -101,7 +101,7 @@ const Register = () => {
             </label>
             <input
               type="text"
-              className="form-control border border-dark border-3"
+              className="form-control border border-dark border-3 input-bg"
               placeholder="e.g. John"
               id="firstName"
               name="firstName"
@@ -117,7 +117,7 @@ const Register = () => {
             </label>
             <input
               type="text"
-              className="form-control border border-dark border-3"
+              className="form-control border border-dark border-3 input-bg"
               placeholder="e.g. Doe"
               name="lastName"
               id="lastName"
@@ -133,7 +133,7 @@ const Register = () => {
             </label>
             <input
               type="password"
-              className="form-control border border-dark border-3"
+              className="form-control border border-dark border-3 input-bg"
               placeholder="Password"
               id="password"
               name="password"
@@ -149,7 +149,7 @@ const Register = () => {
             </label>
             <input
               type="password"
-              className="form-control border border-dark border-3"
+              className="form-control border border-dark border-3 input-bg"
               placeholder="Confirm Password"
               id="confirmPassword"
               name="confirmPassword"

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useQuery, gql } from "@apollo/client";
 import { useParams } from "react-router-dom";
 import Spinner from "../components/Spinner";
@@ -34,6 +34,11 @@ var getColorForPercentage = function (pct) {
 
 const AnimeInfo = () => {
   const { animeID } = useParams();
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const GET_ANIMES = gql`
     query ($id: Int) {
       Media(id: $id) {
@@ -77,7 +82,9 @@ const AnimeInfo = () => {
   return (
     <div style={{ backgroundColor: "#A9A9A9" }}>
       <div className="container">
-        <h1 className="display-1 title">{data.Media.title.userPreferred}</h1>
+        <h1 className="display-1 title" style={{ letterSpacing: 2 }}>
+          {data.Media.title.userPreferred}
+        </h1>
         <div className="info-container">
           <div className="left-container">
             <div>
@@ -89,21 +96,21 @@ const AnimeInfo = () => {
             </div>
 
             <div className="anime-stats">
-              <p className="stat-title">Released: </p>
+              <p className="stat-title">RELEASED: </p>
               <p className="stat">
                 {data.Media.season} {data.Media.seasonYear}
               </p>
             </div>
             <div className="anime-stats">
-              <p className="stat-title">Status: </p>
+              <p className="stat-title">STATUS: </p>
               <p className="stat">{data.Media.status}</p>
             </div>
             <div className="anime-stats">
-              <p className="stat-title">Episodes: </p>
+              <p className="stat-title">EPISODES: </p>
               <p className="stat">{data.Media.duration}</p>
             </div>
             <div className="anime-stats">
-              <p className="stat-title">Genre: </p>
+              <p className="stat-title">GENRE: </p>
               <p className="stat">{gen}</p>
             </div>
           </div>

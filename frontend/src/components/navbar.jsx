@@ -51,7 +51,7 @@ const Navbar = () => {
       <div className="container-xxl">
         <Link className="navbar-brand" to="/">
           <span className="text-light fw-bold d-flex fs-1 justify-content-center">
-            Anime Search
+            AniQuest
           </span>
         </Link>
         <button

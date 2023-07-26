@@ -7,13 +7,13 @@ const Landing = () => {
 
   return (
     <section id="intro" className="bg-dark py-5">
-      <div className="container-lg">
+      <div className="container-lg rel-cont">
         <div className="row g-4 justify-content-center align-items-center">
           <div className="col-md-5 text-center text-md-start">
             <h1>
-              <div className="display-2 fw-bold text-light">Anime</div>
+              <div className="display-2 fw-bold text-light">Explore Anime</div>
               <div className="lead fs-2 text-light mb-5">
-                Search and rate your favorite anime
+                Search and save your favorite anime
               </div>
             </h1>
             {user == null ? (
@@ -44,6 +44,9 @@ const Landing = () => {
               className="img-fluid"
               alt="anime"
             />
+            <p className="text-light source">
+              Source: https://freepngimg.com/png/26522-uchiha-sasuke-clipart
+            </p>
           </div>
         </div>
       </div>

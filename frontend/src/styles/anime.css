@@ -12,6 +12,7 @@ body {
   display: flex;
   flex-direction: row;
   padding-top: 30px;
+  margin-bottom: 2rem;
 }
 
 .left-container {
@@ -41,7 +42,8 @@ body {
   border-top-width: 3px;
   border-top-style: solid;
   gap: 0.3rem;
-  padding-top: 8px;
+  padding-top: 12px;
+  margin-bottom: -4px;
 }
 
 .stat-title {
@@ -278,5 +280,15 @@ body {
     display: flex;
     justify-content: center;
     font-size: 40px;
+  }
+}
+
+@media screen and (min-height: 792px) {
+  .search-div {
+    margin-top: 2rem;
+    margin-bottom: 22rem;
+  }
+  .container {
+    margin-bottom: 15rem;
   }
 }

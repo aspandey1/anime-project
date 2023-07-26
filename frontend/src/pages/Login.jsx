@@ -50,7 +50,7 @@ const Login = () => {
 
   return (
     <form onSubmit={onSubmit} className="container-lg d-flex flex-column mt-4">
-      <div className="container-lg">
+      <div className="container-lg cont-log">
         <div className="d-flex justify-content-center">
           <BiLogInCircle size={150} />
         </div>
@@ -69,7 +69,7 @@ const Login = () => {
             </label>
             <input
               type="email"
-              className="form-control border border-dark border-3"
+              className="form-control border border-dark border-3 input-bg"
               placeholder="e.g. name@example.com"
               id="email"
               name="email"
@@ -85,7 +85,7 @@ const Login = () => {
             </label>
             <input
               type="password"
-              className="form-control border border-dark border-3"
+              className="form-control border border-dark border-3 input-bg"
               placeholder="Password"
               id="password"
               name="password"

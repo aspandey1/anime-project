@@ -73,3 +73,10 @@
     max-height: 3rem;
   }
 }
+
+@media screen and (min-height: 792px) {
+  .library-nothing {
+    margin-top: 16rem;
+    margin-bottom: 40rem;
+  }
+}

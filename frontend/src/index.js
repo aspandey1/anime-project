@@ -9,7 +9,13 @@ import { store } from "./app/store";
 
 const client = new ApolloClient({
   uri: "https://graphql.anilist.co/",
-  cache: new InMemoryCache(),
+  cache: new InMemoryCache({
+    typePolicies: {
+      media: {
+        keyFields: ["id"],
+      },
+    },
+  }),
 });
 
 const root = ReactDOM.createRoot(document.getElementById("root"));
