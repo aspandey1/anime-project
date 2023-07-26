@@ -20,7 +20,6 @@ function App() {
       <Router>
         <Navbar />
         <Routes>
-          // Redirects to Landing Page if invalid url
           <Route path="*" element={<Landing />}></Route>
           <Route path="/login" element={<Login />}></Route>
           <Route path="/register" element={<Register />}></Route>
