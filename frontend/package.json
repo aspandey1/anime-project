@@ -1,7 +1,7 @@
 {
   "name": "frontend",
   "version": "0.1.0",
-  "proxy": "http://localhost:4000",
+  "proxy": "https://aniquest-408ea6645f0e.herokuapp.com",
   "private": true,
   "dependencies": {
     "@apollo/client": "^3.7.15",
