@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/users/";
+const API_URL = "https://aniquest-408ea6645f0e.herokuapp.com/api/users/";
 
 const get = async (values) => {
   const response = await axios.get(API_URL + "getLibrary", {

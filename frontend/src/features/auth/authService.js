@@ -1,6 +1,6 @@
 import axios from "axios";
 
-const API_URL = "/api/users/";
+const API_URL = "https://aniquest-408ea6645f0e.herokuapp.com/api/users/";
 
 // Register user
 const register = async (userData) => {
